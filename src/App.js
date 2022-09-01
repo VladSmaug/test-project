@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "swiper/css";
+import "swiper/css/navigation";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Scrollbar } from "swiper";
+
+import ItemBar from "./components/ItemBar";
+import ItemBarNext from "./components/ItemBarNext";
+import ItemHeader from "./components/ItemHeader";
+import TopBar from "./components/TopBar";
+import UserInfo from "./components/UserInfo";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <TopBar />
       </header>
+      <main>
+        <UserInfo />
+      </main>
+      <ItemHeader />
+      <Swiper
+        modules={[Navigation, Scrollbar]}
+        spaceBetween={50}
+        slidesPerView={1}
+        navigation
+        scrollbar={{ draggable: true }}
+        onSwiper={(swiper) => console.log(swiper)}
+        onSlideChange={() => console.log("slide change")}
+      >
+        <SwiperSlide>
+          <ItemBar />
+          <ItemBarNext />
+        </SwiperSlide>
+        <SwiperSlide>
+          <ItemBar />
+        </SwiperSlide>
+      </Swiper>
     </div>
   );
 }
